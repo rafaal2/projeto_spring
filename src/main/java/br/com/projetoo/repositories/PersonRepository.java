@@ -2,7 +2,8 @@ package br.com.projetoo.repositories;
 
 import br.com.projetoo.model.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-@org.springframework.stereotype.Repository
-public interface Repository extends JpaRepository<Person, Long> {
+@Repository
+public interface PersonRepository extends JpaRepository<Person, Long> {
 }
