@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import br.com.projetoo.data.vo.v1.PersonVo;
 import br.com.projetoo.exception.ResourceNotFoundException;
 import br.com.projetoo.mapper.DozerMapper;
+import br.com.projetoo.model.Person;
 import br.com.projetoo.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -34,28 +35,31 @@ public class PersonServices {
 	public PersonVo findById(Long id) {
 		
 		logger.info("Finding one PersonVo!");
-		return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("nao achouu"));
+		var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("nao achouu"));
+		return DozerMapper.parseObject(entity, PersonVo.class);
 	}
 	
-	public PersonVo create(PersonVo personVo) {
+	public PersonVo create(PersonVo person) {
 
 		logger.info("Creating one PersonVo!");
-
-		return DozerMapper .parseObject(repository.save(), )
-
-	public PersonVo update(PersonVo PersonVo) {
+		var entity = DozerMapper.parseObject(person, Person.class);
+		var vo = DozerMapper.parseObject(repository.save(entity), PersonVo.class);
+		return vo;
+	}
+	public PersonVo update(PersonVo person) {
 
 		logger.info("Updating one PersonVo!");
 
-		var entity = repository.findById(PersonVo.getId())
+		var entity = repository.findById(person.getId())
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 
-		entity.setFirstName(PersonVo.getFirstName());
-		entity.setLastName(PersonVo.getLastName());
-		entity.setAddress(PersonVo.getAddress());
-		entity.setGender(PersonVo.getGender());
+		entity.setFirstName(person.getFirstName());
+		entity.setLastName(person.getLastName());
+		entity.setAddress(person.getAddress());
+		entity.setGender(person.getGender());
+		var vo =DozerMapper.parseObject(repository.save(entity), PersonVo.class);
 
-		return repository.save(PersonVo);
+		return vo;
 	}
 	
 	public void delete(Long id) {
