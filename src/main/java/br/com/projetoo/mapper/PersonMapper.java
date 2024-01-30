@@ -1,15 +1,13 @@
-//package br.com.projetoo.mapper;
-//
-//import java.util.Date;
-//
-//import br.com.projetoo.model.Person;
-//import org.springframework.stereotype.Service;
-//
-//import br.com.erudio.data.vo.v2.PersonVOV2;
-//import br.com.projetoo.model.Person;
-//
-//@Service
-//public class PersonMapper {
+package br.com.projetoo.mapper;
+
+import java.util.Date;
+import br.com.projetoo.model.Person;
+import org.springframework.stereotype.Service;
+
+import br.com.projetoo.model.Person;
+
+@Service
+public class PersonMapper {
 
 //    public PersonVOV2 convertEntityToVo(Person person) {
 //        PersonVOV2 vo = new PersonVOV2();
@@ -34,5 +32,5 @@
 //        return entity;
 //    }
 //
-//}
+}
 //
