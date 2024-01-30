@@ -21,23 +21,23 @@ public class PersonController {
 	private PersonServices service;
 	///private PersonVoServices service = new PersonVoServices();
 	
-	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public List<PersonVo> findAll() {
 		return service.findAll();
 	}
 
-	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public PersonVo findById(@PathVariable(value = "id") Long id) {
 		return service.findById(id);
 	}	@PostMapping (
-			consumes = MediaType.APPLICATION_JSON_VALUE,
-			produces = MediaType.APPLICATION_JSON_VALUE)
+			consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public PersonVo create(@RequestBody PersonVo PersonVo) {
 		return service.create(PersonVo);
 	}
 
-	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
-			produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
 	public PersonVo update(@RequestBody PersonVo PersonVo) {
 		return service.update(PersonVo);
 	}
