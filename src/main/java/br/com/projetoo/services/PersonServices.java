@@ -50,7 +50,7 @@ public class PersonServices {
 
 		logger.info("Updating one PersonVo!");
 
-		var entity = repository.findById(person.getId())
+		var entity = repository.findById(person.getKey())
 				.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 
 		entity.setFirstName(person.getFirstName());
